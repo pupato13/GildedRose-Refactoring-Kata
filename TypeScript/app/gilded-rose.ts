@@ -18,6 +18,7 @@ export const ItemName = {
 
 const MIN_QUALITY = 0;
 const MAX_QUALITY = 50;
+const SULFURAS_QUALITY = 80;
 
 abstract class CustomItem extends Item {
     abstract perform(): void;
@@ -45,6 +46,8 @@ export class ItemFactory {
                 return new AgedBrie(name, sellIn, quality);
             case ItemName.BackstagePasses:
                 return new BackstagePasses(name, sellIn, quality);
+            case ItemName.Sulfuras:
+                return new Sulfuras(name, sellIn, quality);
             default:
                 return new OrdinaryItem(name, sellIn, quality);
         }
@@ -87,6 +90,12 @@ class BackstagePasses extends CustomItem {
         if (this.sellIn <= 5) qualityAmount = 3;
 
         this.updateQuality(qualityAmount);
+    }
+}
+
+class Sulfuras extends CustomItem {
+    perform(): void {
+        this.quality = SULFURAS_QUALITY; // "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
     }
 }
 
