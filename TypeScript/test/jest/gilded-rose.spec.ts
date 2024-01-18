@@ -113,6 +113,15 @@ describe("Gilded Rose", () => {
     });
 
     // ⛔ <= 5
+    it("Should Backstaged Passes increase quality by 3 when SellIn is equal to or less than 5", () => {
+        const backstagedPass = new Item(ItemName.BackstagePasses, 5, 20);
+        const sut = new GildedRose([backstagedPass]);
+
+        sut.updateQuality();
+
+        const updatedBackstagedPass = sut.items[0];
+        expect(updatedBackstagedPass.quality).toBe(23);
+    });
 
     // ⛔ Quality drops to 0 after the concert
 
