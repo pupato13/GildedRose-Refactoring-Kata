@@ -89,9 +89,28 @@ describe("Gilded Rose", () => {
         expect(updatedAgedBrie.quality).toBe(50);
     });
 
+    it("Should keep Backstage Passes quality by 50 if quality is 50", () => {
+        const backstagePAsses = new Item(ItemName.BackstagePasses, 10, 50);
+        const sut = new GildedRose([backstagePAsses]);
+
+        sut.updateQuality();
+
+        const updatedBackstagePasses = sut.items[0];
+        expect(updatedBackstagePasses.quality).toBe(50);
+    });
+
     // ⛔ "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
     // ⛔ Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
     // ⛔ <= 10
+    it("Should Backstaged Passes increase quality by 2 when SellIn is equal to or less than 10", () => {
+        const backstagedPass = new Item(ItemName.BackstagePasses, 10, 20);
+        const sut = new GildedRose([backstagedPass]);
+
+        sut.updateQuality();
+
+        const updatedBackstagedPass = sut.items[0];
+        expect(updatedBackstagedPass.quality).toBe(22);
+    });
 
     // ⛔ <= 5
 
