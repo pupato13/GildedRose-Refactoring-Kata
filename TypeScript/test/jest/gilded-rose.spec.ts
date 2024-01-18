@@ -15,6 +15,15 @@ describe("Gilded Rose", () => {
     });
 
     // ⛔ should decrease sellIn by 1 when updateQuality
+    it("Should decrease sellIn by 1 when updateQuality", () => {
+        const item = new Item("item", 10, 10);
+        const sut = new GildedRose([item]);
+
+        sut.updateQuality();
+
+        const updatedItem = sut.items[0];
+        expect(updatedItem.sellIn).toBe(9);
+    });
     // ⛔ Once the sell by date has passed, Quality degrades twice as fast
 
     // ⛔ The Quality of an item is never negative
