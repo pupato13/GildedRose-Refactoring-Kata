@@ -68,6 +68,15 @@ describe("Gilded Rose", () => {
     });
 
     // ⛔ "Aged Brie" actually increases in Quality the older it gets
+    it("Should increase Aged Brie quality by 1", () => {
+        const agedBrie = new Item("Aged Brie", 10, 20);
+        const sut = new GildedRose([agedBrie]);
+
+        sut.updateQuality();
+
+        const updatedAgedBrie = sut.items[0];
+        expect(updatedAgedBrie.quality).toBe(21);
+    });
 
     // ⛔ The Quality of an item is never more than 50 ⛔ Aged Brie AND Backstage passes ONLY
 
