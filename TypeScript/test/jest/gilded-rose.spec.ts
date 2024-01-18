@@ -1,4 +1,4 @@
-import { Item, GildedRose } from "@/gilded-rose";
+import { Item, GildedRose, ItemName } from "@/gilded-rose";
 
 describe("Gilded Rose", () => {
     // REQUIREMENTS
@@ -69,7 +69,7 @@ describe("Gilded Rose", () => {
 
     // ⛔ "Aged Brie" actually increases in Quality the older it gets
     it("Should increase Aged Brie quality by 1", () => {
-        const agedBrie = new Item("Aged Brie", 10, 20);
+        const agedBrie = new Item(ItemName.AgedBrie, 10, 20);
         const sut = new GildedRose([agedBrie]);
 
         sut.updateQuality();
@@ -79,6 +79,15 @@ describe("Gilded Rose", () => {
     });
 
     // ⛔ The Quality of an item is never more than 50 ⛔ Aged Brie AND Backstage passes ONLY
+    it("Should keep Aged Brie quality by 50 if quality is 50", () => {
+        const agedBrie = new Item(ItemName.AgedBrie, 10, 50);
+        const sut = new GildedRose([agedBrie]);
+
+        sut.updateQuality();
+
+        const updatedAgedBrie = sut.items[0];
+        expect(updatedAgedBrie.quality).toBe(50);
+    });
 
     // ⛔ "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
     // ⛔ Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
