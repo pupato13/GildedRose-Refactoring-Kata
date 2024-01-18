@@ -26,7 +26,7 @@ describe("Gilded Rose", () => {
     });
 
     // ⛔ Once the sell by date has passed, Quality degrades twice as fast
-    it("Should decrease quality by 2 when updateQuality runs and sellIn is equal to or less than 0", () => {
+    it("Should decrease quality by 2 when updateQuality runs and sellIn is equal to or less than 0 [1]", () => {
         const item = new Item("item", 0, 10);
         const sut = new GildedRose([item]);
 
@@ -36,7 +36,36 @@ describe("Gilded Rose", () => {
         expect(updatedItem.quality).toBe(8);
     });
 
+    it("Should decrease quality by 2 when updateQuality runs and sellIn is equal to or less than 0 [2]", () => {
+        const item = new Item("item", -1, 10);
+        const sut = new GildedRose([item]);
+
+        sut.updateQuality();
+
+        const updatedItem = sut.items[0];
+        expect(updatedItem.quality).toBe(8);
+    });
+
     // ⛔ The Quality of an item is never negative
+    it("Should keep quality to 0 when quality is equal to 0 already [1]", () => {
+        const item = new Item("item", 1, 0);
+        const sut = new GildedRose([item]);
+
+        sut.updateQuality();
+
+        const updatedItem = sut.items[0];
+        expect(updatedItem.quality).toBe(0);
+    });
+
+    it("Should keep quality to 0 when quality is equal to 0 already [2]", () => {
+        const item = new Item("item", -1, 0);
+        const sut = new GildedRose([item]);
+
+        sut.updateQuality();
+
+        const updatedItem = sut.items[0];
+        expect(updatedItem.quality).toBe(0);
+    });
 
     // ⛔ "Aged Brie" actually increases in Quality the older it gets
 
