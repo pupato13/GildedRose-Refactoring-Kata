@@ -14,6 +14,7 @@ export const ItemName = {
     AgedBrie: "Aged Brie",
     BackstagePasses: "Backstage passes to a TAFKAL80ETC concert",
     Sulfuras: "Sulfuras, Hand of Ragnaros",
+    Conjured: "Conjured Mana Cake",
 };
 
 const MIN_QUALITY = 0;
@@ -48,6 +49,8 @@ export class ItemFactory {
                 return new BackstagePasses(name, sellIn, quality);
             case ItemName.Sulfuras:
                 return new Sulfuras(name, sellIn, quality);
+            case ItemName.Conjured:
+                return new Conjured(name, sellIn, quality);
             default:
                 return new OrdinaryItem(name, sellIn, quality);
         }
@@ -96,6 +99,16 @@ class BackstagePasses extends CustomItem {
 class Sulfuras extends CustomItem {
     perform(): void {
         this.quality = SULFURAS_QUALITY; // "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
+    }
+}
+
+class Conjured extends CustomItem {
+    perform(): void {
+        this.updateSellIn();
+
+        const qualityAmount = -2;
+
+        this.updateQuality(qualityAmount);
     }
 }
 
