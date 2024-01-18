@@ -106,7 +106,7 @@ class Conjured extends CustomItem {
     perform(): void {
         this.updateSellIn();
 
-        const qualityAmount = -2;
+        const qualityAmount = this.sellIn <= 0 ? -4 : -2;
 
         this.updateQuality(qualityAmount);
     }
