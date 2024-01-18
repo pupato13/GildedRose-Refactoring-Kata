@@ -24,7 +24,17 @@ describe("Gilded Rose", () => {
         const updatedItem = sut.items[0];
         expect(updatedItem.sellIn).toBe(9);
     });
+
     // ⛔ Once the sell by date has passed, Quality degrades twice as fast
+    it("Should decrease quality by 2 when updateQuality runs and sellIn is equal to or less than 0", () => {
+        const item = new Item("item", 0, 10);
+        const sut = new GildedRose([item]);
+
+        sut.updateQuality();
+
+        const updatedItem = sut.items[0];
+        expect(updatedItem.quality).toBe(8);
+    });
 
     // ⛔ The Quality of an item is never negative
 
