@@ -2,7 +2,7 @@
 
 ✅ should decrease quality by 1 when updateQuality
 ✅ should decrease sellIn by 1 when updateQuality
-⛔ Once the sell by date has passed, Quality degrades twice as fast
+✅ Once the sell by date has passed, Quality degrades twice as fast
 
 ⛔ The Quality of an item is never negative
 
