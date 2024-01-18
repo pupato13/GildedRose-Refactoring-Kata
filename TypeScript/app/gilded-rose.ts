@@ -43,6 +43,8 @@ export class ItemFactory {
         switch (name) {
             case ItemName.AgedBrie:
                 return new AgedBrie(name, sellIn, quality);
+            case ItemName.BackstagePasses:
+                return new BackstagePasses(name, sellIn, quality);
             default:
                 return new OrdinaryItem(name, sellIn, quality);
         }
@@ -60,6 +62,16 @@ class OrdinaryItem extends CustomItem {
 }
 
 class AgedBrie extends CustomItem {
+    perform(): void {
+        this.updateSellIn();
+
+        const qualityAmount = 1;
+
+        this.updateQuality(qualityAmount);
+    }
+}
+
+class BackstagePasses extends CustomItem {
     perform(): void {
         this.updateSellIn();
 
