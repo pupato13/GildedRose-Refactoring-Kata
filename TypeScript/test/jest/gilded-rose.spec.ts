@@ -148,4 +148,13 @@ describe("Gilded Rose", () => {
     // ⛔ "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
 
     // ⛔ "Conjured" items degrade in Quality twice as fast as normal items
+    it("Should decrease quality by 2 when updateQuality", () => {
+        const conjured = new Item(ItemName.Conjured, 10, 10);
+        const sut = new GildedRose([conjured]);
+
+        sut.updateQuality();
+
+        const updatedConjured = sut.items[0];
+        expect(updatedConjured.quality).toBe(8);
+    });
 });
