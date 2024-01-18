@@ -16,38 +16,95 @@ export const ItemName = {
     Sulfuras: "Sulfuras, Hand of Ragnaros",
 };
 
+const MIN_QUALITY = 0;
+const MAX_QUALITY = 50;
+
+abstract class CustomItem extends Item {
+    abstract perform(): void;
+
+    protected updateSellIn() {
+        this.sellIn--;
+    }
+
+    protected updateQuality(amount: number) {
+        this.quality = Math.min(
+            Math.max(this.quality + amount, MIN_QUALITY),
+            MAX_QUALITY,
+        );
+    }
+}
+
+export class ItemFactory {
+    static makeCustomItem(
+        name: string,
+        sellIn: number,
+        quality: number,
+    ): CustomItem {
+        switch (name) {
+            case ItemName.AgedBrie:
+                return new AgedBrie(name, sellIn, quality);
+            default:
+                return new OrdinaryItem(name, sellIn, quality);
+        }
+    }
+}
+
+class OrdinaryItem extends CustomItem {
+    perform(): void {
+        this.updateSellIn();
+
+        const qualityAmount = this.sellIn <= 0 ? -2 : -1;
+
+        this.updateQuality(qualityAmount);
+    }
+}
+
+class AgedBrie extends CustomItem {
+    perform(): void {
+        this.updateSellIn();
+
+        const qualityAmount = 1;
+
+        this.updateQuality(qualityAmount);
+    }
+}
+
 export class GildedRose {
-    items: Array<Item>;
+    items: CustomItem[];
 
     constructor(items = [] as Array<Item>) {
-        this.items = items;
+        this.items = items.map(({ name, sellIn, quality }) =>
+            ItemFactory.makeCustomItem(name, sellIn, quality),
+        );
     }
 
     updateQuality() {
-        for (const item of this.items) {
-            item.sellIn--;
+        for (const customItem of this.items) {
+            customItem.perform();
 
-            if (!Object.values(ItemName).includes(item.name)) {
-                const qualityAmount = item.sellIn <= 0 ? -2 : -1;
+            // item.sellIn--;
 
-                const quality = (item.quality = Math.min(
-                    Math.max(item.quality + qualityAmount, 0),
-                    50,
-                ));
+            // if (!Object.values(ItemName).includes(item.name)) {
+            //     const qualityAmount = item.sellIn <= 0 ? -2 : -1;
 
-                item.quality = quality;
-            }
+            //     const quality = (item.quality = Math.min(
+            //         Math.max(item.quality + qualityAmount, 0),
+            //         50,
+            //     ));
 
-            if (item.name === ItemName.AgedBrie) {
-                const qualityAmount = 1;
+            //     item.quality = quality;
+            // }
 
-                const quality = (item.quality = Math.min(
-                    Math.max(item.quality + qualityAmount, 0),
-                    50,
-                ));
+            // if (item.name === ItemName.AgedBrie) {
+            //     const qualityAmount = 1;
 
-                item.quality = quality;
-            }
+            //     const quality = (item.quality = Math.min(
+            //         Math.max(item.quality + qualityAmount, 0),
+            //         50,
+            //     ));
+
+            //     item.quality = quality;
+            // }
         }
 
         return this.items;
