@@ -124,6 +124,15 @@ describe("Gilded Rose", () => {
     });
 
     // ⛔ Quality drops to 0 after the concert
+    it("Should Backstaged Passes quality be 0 when SellIn is equal to or less than 0", () => {
+        const backstagedPass = new Item(ItemName.BackstagePasses, 0, 29);
+        const sut = new GildedRose([backstagedPass]);
+
+        sut.updateQuality();
+
+        const updatedBackstagedPass = sut.items[0];
+        expect(updatedBackstagedPass.quality).toBe(0);
+    });
 
     // ⛔ "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
 
