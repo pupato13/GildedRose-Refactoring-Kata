@@ -75,8 +75,14 @@ class BackstagePasses extends CustomItem {
     perform(): void {
         this.updateSellIn();
 
+        if (this.sellIn <= 0) {
+            this.quality = 0;
+            return;
+        }
+
         let qualityAmount = 1;
 
+        // TODO: improve
         if (this.sellIn <= 10) qualityAmount = 2;
         if (this.sellIn <= 5) qualityAmount = 3;
 
