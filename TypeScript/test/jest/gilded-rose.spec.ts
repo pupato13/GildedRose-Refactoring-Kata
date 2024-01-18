@@ -135,6 +135,15 @@ describe("Gilded Rose", () => {
     });
 
     // ⛔ "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
+    it("Should Sulfuras quality be 80 and never change", () => {
+        const sulfuras = new Item(ItemName.Sulfuras, 0, 79); // test a scenario where Sulfuras has changed by mistake
+        const sut = new GildedRose([sulfuras]);
+
+        sut.updateQuality();
+
+        const updatedSulfuras = sut.items[0];
+        expect(updatedSulfuras.quality).toBe(80);
+    });
 
     // ⛔ "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
 
