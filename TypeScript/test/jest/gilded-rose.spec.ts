@@ -157,4 +157,14 @@ describe("Gilded Rose", () => {
         const updatedConjured = sut.items[0];
         expect(updatedConjured.quality).toBe(8);
     });
+
+    it("Should decrease quality by 4 when updateQuality runs and sellIn is equal to or less than 0", () => {
+        const conjured = new Item(ItemName.Conjured, 0, 10);
+        const sut = new GildedRose([conjured]);
+
+        sut.updateQuality();
+
+        const updatedConjured = sut.items[0];
+        expect(updatedConjured.quality).toBe(6);
+    });
 });
