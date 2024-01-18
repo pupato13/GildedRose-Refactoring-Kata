@@ -4,9 +4,9 @@
 ✅ should decrease sellIn by 1 when updateQuality
 ✅ Once the sell by date has passed, Quality degrades twice as fast
 
-⛔ The Quality of an item is never negative
+✅ The Quality of an item is never negative
 
-⛔ "Aged Brie" actually increases in Quality the older it gets
+✅ "Aged Brie" actually increases in Quality the older it gets
 
 ⛔ The Quality of an item is never more than 50 ⛔ Aged Brie AND Backstage passes ONLY
 
