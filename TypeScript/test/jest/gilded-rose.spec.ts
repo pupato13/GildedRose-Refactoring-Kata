@@ -167,4 +167,7 @@ describe("Gilded Rose", () => {
         const updatedConjured = sut.items[0];
         expect(updatedConjured.quality).toBe(6);
     });
+
+    // TODO
+    // Test if ItemFactory is returning correct type to have code coverage as 100%
 });
