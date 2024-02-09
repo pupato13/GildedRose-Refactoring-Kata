@@ -8,20 +8,20 @@
 
 ✅ "Aged Brie" actually increases in Quality the older it gets
 
-⛔ The Quality of an item is never more than 50 ⛔ Aged Brie AND Backstage passes ONLY
+✅ The Quality of an item is never more than 50 ⛔ Aged Brie AND Backstage passes ONLY
 
-⛔ "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
-⛔ Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
-⛔ <= 10
+✅ "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+✅ Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+✅ <= 10
 
-⛔ <= 5
+✅ <= 5
 
-⛔ Quality drops to 0 after the concert
-
-
-⛔ "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
+✅ Quality drops to 0 after the concert
 
 
-⛔ "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+✅ "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
 
-⛔ "Conjured" items degrade in Quality twice as fast as normal items
+
+✅ "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+
+✅ "Conjured" items degrade in Quality twice as fast as normal items
